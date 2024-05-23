@@ -271,7 +271,7 @@ namespace Exercise6
         {
             var method = Emps
                 .Select(emp => new { emp.Ename, emp.Job, emp.HireDate })
-                .Union(new[] { new { Ename ="Brak wartości", Job = string.Empty, HireDate = (DateTime?)null } });
+                .Union(new[] { new { Ename ="Brak wartości", Job = string.Empty, HireDate = (DateTime?) null } });
             IEnumerable<object> result = method;
             return result;
         }
@@ -292,12 +292,9 @@ namespace Exercise6
             var method = Emps
                 .GroupBy(emp => emp.Deptno)
                 .Where(group => group.Count() > 1)
-                .Select(group =>
-                    new
-                    {
+                .Select(group => new {
                         name = Depts.First(dept => dept.Deptno == group.Key).Dname,
-                        numOfEmployees = group.Count()
-                    });
+                        numOfEmployees = group.Count() });
             IEnumerable<object> result = method;
             return result;
         }
@@ -341,8 +338,7 @@ namespace Exercise6
         {
             IEnumerable<Dept> result = null;
             result = Depts
-                .Where(dept => 
-                    Emps.Count(emp => emp.Deptno == dept.Deptno) == 5 || Emps.All(emp => emp.Deptno != dept.Deptno))
+                .Where(dept => Emps.Count(emp => emp.Deptno == dept.Deptno) == 5 || Emps.All(emp => emp.Deptno != dept.Deptno))
                 .OrderBy(dept => dept.Dname);
             return result;
         }
